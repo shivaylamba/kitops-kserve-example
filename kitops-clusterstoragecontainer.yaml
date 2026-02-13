@@ -1,0 +1,32 @@
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterStorageContainer
+metadata:
+  name: kitops
+spec:
+  container:
+    name: storage-initializer
+    image: ghcr.io/kitops-ml/kitops-kserve:latest
+    imagePullPolicy: Always
+    env:
+      - name: KIT_UNPACK_FLAGS
+        value: ""
+      - name: KIT_USER
+        valueFrom:
+          secretKeyRef:
+            name: kit-secret
+            key: KIT_USER
+            optional: true
+      - name: KIT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: kit-secret
+            key: KIT_PASSWORD
+            optional: true
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 100m
+      limits:
+        memory: 1Gi
+  supportedUriFormats:
+    - prefix: kit://

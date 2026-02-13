@@ -1,0 +1,11 @@
+# iris-sklearn-inferenceservice.yaml
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: sklearn-iris
+spec:
+  predictor:
+    model:
+      modelFormat:
+        name: sklearn
+      storageUri: kit://jozu.ml/shivaylamba/iris-sklearn:latest

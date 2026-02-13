@@ -1,0 +1,7 @@
+package:
+  name: iris-sklearn
+  version: "1.0.0"
+
+model:
+  format: sklearn
+  path: model.joblib
